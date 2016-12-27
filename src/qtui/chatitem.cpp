@@ -599,20 +599,13 @@ qreal ContentsChatItem::setGeometryByWidth(qreal w)
 {
     // We use this for reloading layout info as well, so we can't bail out if the width doesn't change
 
-    // compute height
-    int lines = 1;
-    WrapColumnFinder finder(this);
-    while (finder.nextWrapColumn(w) > 0)
-        lines++;
-    qreal spacing = qMax(fontMetrics()->lineSpacing(), fontMetrics()->height()); // cope with negative leading()
-    qreal h = lines * spacing;
-    delete _data;
-    _data = 0;
+    qreal boundingHeight = fontMetrics()->boundingRect(QRect(0, 0, w, fontMetrics()->height()), Qt::TextWordWrap, this->data(ChatLineModel::DisplayRole).toString()).height();
 
-    if (w != width() || h != height())
-        setGeometry(w, h);
+    if (w != width() || boundingHeight != height()) {
+        setGeometry(w, boundingHeight);
+    }
 
-    return h;
+    return boundingHeight;
 }
 
 
