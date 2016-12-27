@@ -599,11 +599,14 @@ qreal ContentsChatItem::setGeometryByWidth(qreal w)
 {
     // We use this for reloading layout info as well, so we can't bail out if the width doesn't change
 
-    qreal boundingHeight = fontMetrics()->boundingRect(QRect(0, 0, w, fontMetrics()->height()), Qt::TextWordWrap, this->data(ChatLineModel::DisplayRole).toString()).height();
+    qreal boundingHeight = fontMetrics()->boundingRect(QRect(0, 0, w, fontMetrics()->height()), Qt::TextWordWrap, this->data(ChatLineModel::MessageRole).toString()).height();
 
     if (w != width() || boundingHeight != height()) {
         setGeometry(w, boundingHeight);
     }
+
+    delete _data;
+    _data = 0;
 
     return boundingHeight;
 }
