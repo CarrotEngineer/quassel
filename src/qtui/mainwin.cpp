@@ -569,19 +569,19 @@ void MainWin::setupMenus()
 #ifdef Q_OS_MAC && QT_VERSION >= 0x050000
     _editMenu = menuBar()->addMenu(tr("Edit"));
 
-    QAction *undoAct = new QAction(tr("&Undo"), this);
+    QAction *undoAct = new QAction(tr("Undo"), this);
     undoAct->setShortcuts(QKeySequence::Undo);
 
-    QAction *redoAct = new QAction(tr("&Redo"), this);
+    QAction *redoAct = new QAction(tr("Redo"), this);
     redoAct->setShortcuts(QKeySequence::Redo);
 
-    QAction *cutAct = new QAction(tr("Cu&t"), this);
+    QAction *cutAct = new QAction(tr("Cut"), this);
     cutAct->setShortcuts(QKeySequence::Cut);
 
-    QAction *copyAct = new QAction(tr("&Copy"), this);
+    QAction *copyAct = new QAction(tr("Copy"), this);
     copyAct->setShortcuts(QKeySequence::Copy);
 
-    QAction *pasteAct = new QAction(tr("&Paste"), this);
+    QAction *pasteAct = new QAction(tr("Paste"), this);
     pasteAct->setShortcuts(QKeySequence::Paste);
 
     _editMenu->addAction(undoAct);
