@@ -566,6 +566,32 @@ void MainWin::setupMenus()
     _fileMenu->addSeparator();
     _fileMenu->addAction(coll->action("Quit"));
 
+#ifdef Q_OS_MAC && QT_VERSION >= 0x050000
+    _editMenu = menuBar()->addMenu(tr("Edit"));
+
+    QAction *undoAct = new QAction(tr("&Undo"), this);
+    undoAct->setShortcuts(QKeySequence::Undo);
+
+    QAction *redoAct = new QAction(tr("&Redo"), this);
+    redoAct->setShortcuts(QKeySequence::Redo);
+
+    QAction *cutAct = new QAction(tr("Cu&t"), this);
+    cutAct->setShortcuts(QKeySequence::Cut);
+
+    QAction *copyAct = new QAction(tr("&Copy"), this);
+    copyAct->setShortcuts(QKeySequence::Copy);
+
+    QAction *pasteAct = new QAction(tr("&Paste"), this);
+    pasteAct->setShortcuts(QKeySequence::Paste);
+
+    _editMenu->addAction(undoAct);
+    _editMenu->addAction(redoAct);
+    _editMenu->addSeparator();
+    _editMenu->addAction(cutAct);
+    _editMenu->addAction(copyAct);
+    _editMenu->addAction(pasteAct);
+#endif
+
     _viewMenu = menuBar()->addMenu(tr("&View"));
     _bufferViewsMenu = _viewMenu->addMenu(tr("&Chat Lists"));
     _bufferViewsMenu->addAction(coll->action("ConfigureBufferViews"));
